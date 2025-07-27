@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Configure",
+            "type": "process",
+            "dependsOn": [],
+            "command": "mkdir",
+            "args": ["-p", "build/"],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": []
+        },
+        {
+            "label": "ModelSim-Compile",
+            "type": "shell",
+            "dependsOn": "Configure",
+            "command": "vsim",
+            "args": ["-c", "-do", "../test/tb/compile.do"],
+            "options": {"cwd": "${workspaceFolder}/build"},
+            "group": {"kind": "build", "isDefault": true},
+            "problemMatcher": []
+        },
+        {
+            "label": "ModelSim-TestBench-Alu",
+            "type": "shell",
+            "dependsOn": "ModelSim-Compile",
+            "command": "vsim",
+            "args": ["-gui", "-do", "../test/tb/run_alu_tb.do"],
+            "options": {"cwd": "${workspaceFolder}/build"},
+            "problemMatcher": []
+        },
+        {
+            "label": "ModelSim-TestBench-Decoder",
+            "type": "shell",
+            "dependsOn": "ModelSim-Compile",
+            "command": "vsim",
+            "args": ["-gui", "-do", "../test/tb/run_decoder_tb.do"],
+            "options": {"cwd": "${workspaceFolder}/build"},
+            "problemMatcher": []
+        },
+        {
+            "label": "ModelSim-Clean",
+            "type": "process",
+            "dependsOn": "Configure",
+            "command": "rm",
+            "args": ["-rf", "*"],
+            "options": {"cwd": "${workspaceFolder}/build"},
+            "problemMatcher": []
+        }
+    ]
+}
