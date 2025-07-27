@@ -20,7 +20,7 @@ constant IO_START   : std_logic_vector(31 downto 0) := x"40000000";
 constant IO_END     : std_logic_vector(31 downto 0) := x"40000007";
 
 -- ============================================================================
--- BASE INSTRUCTION SET (42)
+-- RV32I Base Instruction Set (42)
 -- ============================================================================
 type bis_t is (
    -- Upper Immediate
@@ -85,7 +85,7 @@ type bis_t is (
 type xregs_t is array (0 to 31) of std_logic_vector(31 downto 0);
 
 -- Pipeline stages (5 stages)
-type pipeline_stage_t is (IF_STAGE, ID_STAGE, EX_STAGE, MEM_STAGE, WB_STAGE);
+type stage_t is (IF_STAGE, ID_STAGE, EX_STAGE, MEM_STAGE, WB_STAGE);
 
 -- ============================================================================
 -- ALU TYPES
@@ -102,6 +102,25 @@ type alu_output_t is record
     result : std_logic_vector(31 downto 0);
     zero   : std_logic;
 end record alu_output_t;
+
+-- ============================================================================
+-- BANK REGISTER TYPES
+-- ============================================================================
+-- Bank register input (dual port access)
+type bank_input_t is record
+    we1   : std_logic;
+    we2   : std_logic;
+    addr1 : std_logic_vector(4 downto 0);
+    addr2 : std_logic_vector(4 downto 0);
+    data1 : std_logic_vector(31 downto 0);
+    data2 : std_logic_vector(31 downto 0);
+end record bank_input_t;
+
+-- Bank register output (dual read ports)
+type bank_output_t is record
+    data1 : std_logic_vector(31 downto 0);
+    data2 : std_logic_vector(31 downto 0);
+end record bank_output_t;
 
 -- ============================================================================
 -- I/O TYPES

@@ -36,7 +36,7 @@ noview library
 view wave
 view list
 
-wave zoom range 0ns 200ns
+wave zoom range 0ns 500ns
 wave zoom full
 
-run 200ns
+run 500ns

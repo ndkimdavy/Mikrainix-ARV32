@@ -1,0 +1,52 @@
+
+test.o:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	123452b7          	lui	t0,0x12345
+   4:	01000317          	auipc	t1,0x1000
+   8:	094000ef          	jal	9c <label1>
+   c:	06418167          	jalr	sp,100(gp)
+  10:	08208863          	beq	ra,sp,a0 <label2>
+  14:	08209663          	bne	ra,sp,a0 <label2>
+  18:	0820c463          	blt	ra,sp,a0 <label2>
+  1c:	0820d263          	bge	ra,sp,a0 <label2>
+  20:	0820e063          	bltu	ra,sp,a0 <label2>
+  24:	0620fe63          	bgeu	ra,sp,a0 <label2>
+  28:	00010083          	lb	ra,0(sp)
+  2c:	00211083          	lh	ra,2(sp)
+  30:	00412083          	lw	ra,4(sp)
+  34:	00814083          	lbu	ra,8(sp)
+  38:	00a15083          	lhu	ra,10(sp)
+  3c:	00310023          	sb	gp,0(sp)
+  40:	00311123          	sh	gp,2(sp)
+  44:	00312223          	sw	gp,4(sp)
+  48:	06410093          	addi	ra,sp,100
+  4c:	03212093          	slti	ra,sp,50
+  50:	03213093          	sltiu	ra,sp,50
+  54:	0ff14093          	xori	ra,sp,255
+  58:	0f016093          	ori	ra,sp,240
+  5c:	00f17093          	andi	ra,sp,15
+  60:	00411093          	slli	ra,sp,0x4
+  64:	00215093          	srli	ra,sp,0x2
+  68:	40115093          	srai	ra,sp,0x1
+  6c:	003100b3          	add	ra,sp,gp
+  70:	403100b3          	sub	ra,sp,gp
+  74:	003110b3          	sll	ra,sp,gp
+  78:	003120b3          	slt	ra,sp,gp
+  7c:	003130b3          	sltu	ra,sp,gp
+  80:	003140b3          	xor	ra,sp,gp
+  84:	003150b3          	srl	ra,sp,gp
+  88:	403150b3          	sra	ra,sp,gp
+  8c:	003160b3          	or	ra,sp,gp
+  90:	003170b3          	and	ra,sp,gp
+  94:	00000073          	ecall
+  98:	00100073          	ebreak
+
+0000009c <label1>:
+  9c:	00000013          	nop
+
+000000a0 <label2>:
+  a0:	00000013          	nop
